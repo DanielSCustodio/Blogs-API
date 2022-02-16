@@ -6,7 +6,9 @@ const EMAIL_EXISTS = 'User already registered';
 
 const checkEmail = async (req, res, next) => {
   const { email } = req.body;
+  console.log('Email:====>', email);
   const result = await User.findOne({ where: { email } });
+    console.log('result:====>', result);
   if (result) {
     const { status, message } = await sendResponse(EMAIL_EXISTS);
     return res.status(status).json({ message });

@@ -5,16 +5,14 @@ const { User } = require('../../models');
 const INVALID_FIELDS = 'Invalid fields';
 
 const checkFields = async (req, res, next) => {
-  const { email, password } = req.body;
-  const resultEmail = await User.findOne({ where: { email } });
-  const resultPassword = await User.findOne({ where: { password } });
-
-  if (!resultEmail || !resultPassword) {
+  const { email } = req.body;
+  const result = await User.findOne({ where: { email } });
+  if (result === null) {
     const { status, message } = await sendResponse(INVALID_FIELDS);
     return res.status(status).json({ message });
   }
-  next();
-};
+  next(); 
+}; 
 
 const checkBody = async (req, res, next) => {
   try {
