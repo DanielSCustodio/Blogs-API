@@ -30,5 +30,20 @@ module.exports = [
     messageReceived: 'User already registered',
     message: 'User already registered',
   },
-
+  {
+    status: 400,
+    messageReceived: '"email" is not allowed to be empty',
+    message: '"email" is not allowed to be empty',
+  },
+ 
+  {
+    status: 400,
+    messageReceived: '"password" is not allowed to be empty',
+    message: '"password" is not allowed to be empty',
+  },
+  {
+    status: 400,
+    messageReceived: 'Invalid fields',
+    message: 'Invalid fields',
+  },
 ];
