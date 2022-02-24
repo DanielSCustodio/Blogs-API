@@ -1,13 +1,10 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-const SECRET = require('../config/secret');
+const JWT_DATA = require('../util/jwtConfig');
 
 const createUser = async (user) => {
   const newUser = await User.create(user);
-    const token = jwt.sign(newUser.dataValues, SECRET, {
-      algorithm: 'HS256',
-      expiresIn: '1d',
-    });
+    const token = jwt.sign(newUser.dataValues, 'SECRET', JWT_DATA);
   return { token };
 };
 

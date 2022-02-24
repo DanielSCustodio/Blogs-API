@@ -15,6 +15,7 @@
     "shelljs": "0.8.4"
   },
   "scripts": {
+    "dev": "nodemon index.js",
     "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate $",
     "start": "node index.js",
     "drop": "npx sequelize-cli db:drop $",
