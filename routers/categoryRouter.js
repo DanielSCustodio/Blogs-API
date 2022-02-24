@@ -9,4 +9,9 @@ category.post('/',
   validationCategory.checkName,
   categoryController.createCategoy);
 
+  category.get('/',
+    validationToken.findToken,
+    validationToken.checkToken,
+    categoryController.getAllCategories);
+
   module.exports = category;
