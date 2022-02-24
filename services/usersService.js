@@ -8,10 +8,15 @@ const createUser = async (user) => {
       algorithm: 'HS256',
       expiresIn: '1d',
     });
-  
   return { token };
+};
+
+const getAllUsers = async () => {
+  const allUsers = await User.findAll();
+  return allUsers;
 };
 
 module.exports = {
   createUser,
+  getAllUsers,
 };

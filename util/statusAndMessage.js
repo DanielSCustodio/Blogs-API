@@ -46,4 +46,9 @@ module.exports = [
     messageReceived: 'Invalid fields',
     message: 'Invalid fields',
   },
+  {
+    status: 401,
+    messageReceived: 'Token not found',
+    message: 'Token not found',
+  },
 ];
