@@ -19,6 +19,12 @@ module.exports = [
 
   {
     status: 400,
+    messageReceived: '"name" is required',
+    message: '"name" is required',
+  },
+
+  {
+    status: 400,
     messageReceived: '"password" length must be at least 6 characters long',
     message: '"password" length must be 6 characters long',  
   },
