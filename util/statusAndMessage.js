@@ -58,9 +58,15 @@ module.exports = [
     message: 'Token not found',
   },
 
-    {
-      status: 401,
-      messageReceived: 'Expired or invalid token',
-      message: 'Expired or invalid token',
-    },
+  {
+    status: 401,
+    messageReceived: 'Expired or invalid token',
+    message: 'Expired or invalid token',
+  },
+
+  {
+    status: 404,
+    messageReceived: 'User does not exist',
+    message: 'User does not exist',
+  },
 ];

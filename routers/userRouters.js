@@ -13,4 +13,10 @@ validationToken.findToken,
 validationToken.checkToken,
 userController.getAllUsers);
 
+user.get('/:id', 
+validationToken.findToken,
+validationToken.checkToken,
+validationUser.checkId,
+userController.getUserById);
+
 module.exports = user;
