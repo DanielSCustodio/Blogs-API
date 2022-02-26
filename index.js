@@ -3,10 +3,12 @@ const bodyParser = require('body-parser');
 const userRouters = require('./routers/userRouters');
 const loginRouter = require('./routers/loginRouter');
 const categoryRouter = require('./routers/categoryRouter');
+const blogPostRouter = require('./routers/blogPostRouter');
 
 const app = express();
 app.use(bodyParser.json());
 
+app.use('/post', blogPostRouter);
 app.use('/categories', categoryRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouters);

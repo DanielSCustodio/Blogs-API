@@ -34,6 +34,25 @@ module.exports = [
     messageReceived: '"password" is required',
     message: '"password" is required',
   },
+
+  {
+    status: 400,
+    messageReceived: '"content" is required',
+    message: '"content" is required',
+  },
+
+  {
+    status: 400,
+    messageReceived: '"categoryIds" is required',
+    message: '"categoryIds" is required',
+  },
+
+  {
+    status: 400,
+    messageReceived: '"title" is required',
+    message: '"title" is required',
+  },
+
   {
     status: 409,
     messageReceived: 'User already registered',
@@ -68,6 +87,12 @@ module.exports = [
     status: 401,
     messageReceived: 'Expired or invalid token',
     message: 'Expired or invalid token',
+  },
+
+  {
+    status: 400,
+    messageReceived: '"categoryIds" not found',
+    message: '"categoryIds" not found',
   },
 
   {

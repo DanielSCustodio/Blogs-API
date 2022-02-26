@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-  }, 
-  {
-    defaultScope: { attributes: { exclude: ['password'] } },
   });
+  User.associate = (models) => {
+    User.hasMany(models.BlogPost, { foreignKey: 'userId', as: 'blogposts' });
+  };
   return User;
 };
