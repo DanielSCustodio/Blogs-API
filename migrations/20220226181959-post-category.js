@@ -9,7 +9,7 @@ module.exports = {
         allowNull: false,
         foreingKey: true,
         references: {
-          model: 'BlogPosts',
+          model: 'BlogPosts', //nome da tabela
           key: 'id',
         },
         onUpdate: 'CASCADE',
