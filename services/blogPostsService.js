@@ -23,7 +23,19 @@ const getAllBlogPosts = async () => {
   return allBlogPosts;
 };
 
+const getBlogPostsId = async (id) => {
+  const blogPost = await BlogPost.findOne({
+    where: { id },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } }, // variavel para ocultar senha não funfa
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+  return blogPost;
+};
+
 module.exports = {
   createBlogPost,
   getAllBlogPosts,
+  getBlogPostsId,
 };

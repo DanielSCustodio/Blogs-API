@@ -100,4 +100,11 @@ module.exports = [
     messageReceived: 'User does not exist',
     message: 'User does not exist',
   },
+
+  {
+    status: 404,
+    messageReceived: 'Post does not exist',
+    message: 'Post does not exist',
+  },
+
 ];

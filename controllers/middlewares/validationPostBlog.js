@@ -1,8 +1,9 @@
 const { blogPostSchema } = require('../../util/validationSchemaBlogPosts');
 const sendResponse = require('./responseError');
-const { Category } = require('../../models');
+const { Category, BlogPost } = require('../../models');
 
 const CATEGORY_NOT_FOUND = '"categoryIds" not found';
+const ID_NOT_EXIST = 'Post does not exist';
 
 const checkBody = async (req, res, next) => {
   try {
@@ -35,7 +36,18 @@ const checkIdcategory = async (req, res, next) => {
   next();
 };
 
+const checkIdBlogPost = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await BlogPost.findByPk(id);
+  if (!result) {
+    const { status, message } = await sendResponse(ID_NOT_EXIST);
+    return res.status(status).json({ message });
+  }
+  next();
+};
+
 module.exports = {
   checkBody,
   checkIdcategory,
+  checkIdBlogPost,
 };

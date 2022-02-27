@@ -15,4 +15,10 @@ blogPost.get('/',
   validationToken.checkToken,
   blogPostController.getAllBlogPosts);
 
+blogPost.get('/:id',
+  validationToken.findToken,
+  validationToken.checkToken,
+  validationPostBlog.checkIdBlogPost,
+  blogPostController.getBlogPostsId);
+
 module.exports = blogPost;
