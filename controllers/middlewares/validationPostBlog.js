@@ -5,7 +5,6 @@ const { Category } = require('../../models');
 const CATEGORY_NOT_FOUND = '"categoryIds" not found';
 
 const checkBody = async (req, res, next) => {
-    console.log('checkBody ====> PASSOU AQUI');
   try {
     await blogPostSchema.validateAsync(req.body);
   } catch (error) {
@@ -17,16 +16,22 @@ const checkBody = async (req, res, next) => {
 };
 
 const checkIdcategory = async (req, res, next) => {
-  console.log('checkIdcategory ====> PASSOU AQUI');
   const { categoryIds } = await req.body;
 
+  const checkId = await Promise.all(
     categoryIds.map(async (id) => {
       const result = await Category.findByPk(id);
-      if (!result) {
-        const { status, message } = await sendResponse(CATEGORY_NOT_FOUND);
-        return res.status(status).json({ message });
-      }
-    });
+      return result;
+    }),
+  );
+
+  const checkCategory = checkId.some((id) => id === null);
+  
+  if (checkCategory) {
+    const { status, message } = await sendResponse(CATEGORY_NOT_FOUND);
+    return res.status(status).json({ message });
+  }
+  
   next();
 };
 
