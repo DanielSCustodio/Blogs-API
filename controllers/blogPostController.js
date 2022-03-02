@@ -27,9 +27,16 @@ const editBlogPost = async (req, res) => {
   res.status(200).json(blogPost);
 };
 
+const deleteBlogPost = async (req, res) => {
+  const { id } = req.params;
+  await blogPostsService.deleteBlogPost(id);
+  res.status(204).json();
+};
+
 module.exports = {
   createBlogPost,
   getAllBlogPosts,
   getBlogPostsId,
   editBlogPost,
+  deleteBlogPost,
 };

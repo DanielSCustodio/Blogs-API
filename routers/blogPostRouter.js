@@ -28,4 +28,11 @@ blogPost.put('/:id',
   validationPostBlog.userAuthorization,
   blogPostController.editBlogPost);
 
+blogPost.delete('/:id',
+  validationToken.findToken,
+  validationToken.checkToken,
+  validationPostBlog.checkIdBlogPost,
+  validationPostBlog.userAuthorization,
+  blogPostController.deleteBlogPost);
+
 module.exports = blogPost;
