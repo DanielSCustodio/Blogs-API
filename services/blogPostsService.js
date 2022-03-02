@@ -1,5 +1,7 @@
 // consulta: https://sequelize.org/v7/manual/advanced-many-to-many.html
+// consulta: https://stackoverflow.com/questions/31258158/how-to-implement-search-feature-using-sequelizejs
 const jwt = require('jsonwebtoken');
+const { Op } = require('sequelize');
 const { BlogPost, User, Category } = require('../models');
 
 const createBlogPost = async (title, content, token, categoryIds) => {
@@ -48,10 +50,30 @@ const deleteBlogPost = async (id) => {
   await BlogPost.destroy({ where: { id } });
 };
 
+const searchBlogPost = async (queryParam) => {
+  const blogPostSearch = await BlogPost.findAll(
+    {
+      where: {
+        [Op.or]: [
+          { title: { [Op.like]: `%${queryParam}%` } },
+          { content: { [Op.like]: `%${queryParam}%` } },
+        ],
+      },
+      include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+    },
+  );
+
+  return blogPostSearch;
+};
+
 module.exports = {
   createBlogPost,
   getAllBlogPosts,
   getBlogPostsId,
   editBlogPost,
   deleteBlogPost,
+  searchBlogPost,
 };

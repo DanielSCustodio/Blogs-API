@@ -3,6 +3,11 @@ const validationPostBlog = require('../controllers/middlewares/validationPostBlo
 const validationToken = require('../controllers/middlewares/validationToken'); 
 const blogPostController = require('../controllers/blogPostController');
 
+blogPost.get('/search',
+validationToken.findToken,
+validationToken.checkToken,
+blogPostController.searchBlogPost);
+
 blogPost.post('/',
   validationToken.findToken,
   validationToken.checkToken,
