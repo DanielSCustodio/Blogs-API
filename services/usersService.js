@@ -24,8 +24,16 @@ const getUserById = async (id) => {
   return user;
 };
 
+const deleteUser = async (token) => {
+  const decode = jwt.decode(token);
+  const { email } = decode; 
+  const { id } = await User.findOne({ where: { email } });
+  return User.destroy({ where: { id } });
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
+  deleteUser,
 };

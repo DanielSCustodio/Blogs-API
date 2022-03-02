@@ -19,4 +19,9 @@ validationToken.checkToken,
 validationUser.checkId,
 userController.getUserById);
 
+user.delete('/me', 
+validationToken.findToken,
+validationToken.checkToken,
+userController.deleteUser);
+
 module.exports = user;
