@@ -6,6 +6,12 @@ const blogPostSchema = joi.object({
   categoryIds: joi.required(),
 });
 
+const blogPostSchemaTwo = joi.object({
+  title: joi.required(),
+  content: joi.required(),
+});
+
 module.exports = {
   blogPostSchema,
+  blogPostSchemaTwo,
 };

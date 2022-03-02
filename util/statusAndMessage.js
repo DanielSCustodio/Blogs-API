@@ -90,9 +90,21 @@ module.exports = [
   },
 
   {
+    status: 401,
+    messageReceived: 'Unauthorized user',
+    message: 'Unauthorized user',
+  },
+
+  {
     status: 400,
     messageReceived: '"categoryIds" not found',
     message: '"categoryIds" not found',
+  },
+
+  {
+    status: 400,
+    messageReceived: '"categoryIds" is not allowed',
+    message: 'Categories cannot be edited',
   },
 
   {

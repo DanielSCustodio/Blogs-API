@@ -1,16 +1,12 @@
-const jwt = require('jsonwebtoken');
+/* const jwt = require('jsonwebtoken'); */
 const blogPostsService = require('../services/blogPostsService');
 
 const createBlogPost = async (req, res) => {
   const token = req.headers.authorization;
   const { title, content, categoryIds } = req.body;
-  const decode = jwt.decode(token);
-  const { id: userId = 1 } = decode; 
-  const { id } = await blogPostsService.createBlogPost({
-    title, content, categoryIds,
-  });
-  
-  return res.status(201).json({ id, userId, title, content });
+  const blogPost = await blogPostsService.createBlogPost(title, content, token, categoryIds);
+  const result = { id: blogPost.id, userId: blogPost.userId, title, content };
+  res.status(201).json(result);
 };
 
 const getAllBlogPosts = async (req, res) => {
@@ -24,8 +20,16 @@ const getBlogPostsId = async (req, res) => {
   res.status(200).json(blogPost);
 };
 
+const editBlogPost = async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  const blogPost = await blogPostsService.editBlogPost(id, title, content);
+  res.status(200).json(blogPost);
+};
+
 module.exports = {
   createBlogPost,
   getAllBlogPosts,
   getBlogPostsId,
+  editBlogPost,
 };

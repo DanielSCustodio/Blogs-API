@@ -1,16 +1,20 @@
 // consulta: https://sequelize.org/v7/manual/advanced-many-to-many.html
+const jwt = require('jsonwebtoken');
 const { BlogPost, User, Category } = require('../models');
 
-const createBlogPost = async ({ title, content, categoryIds }) => {
+const createBlogPost = async (title, content, token, categoryIds) => {
+  const decode = jwt.decode(token);
+  const { email, id: userId } = decode; 
+  const getUserId = await User.findOne({ where: { email } });
   const newBlogPost = await BlogPost.create({ 
     title,
     content,
+    userId,
     categoryIds,
     published: new Date(),
     updated: new Date(),
   });
-
-  return newBlogPost;
+  return { id: newBlogPost.id, title, content, userId: getUserId.id, categoryIds };
 };
 
 const getAllBlogPosts = async () => {
@@ -34,8 +38,15 @@ const getBlogPostsId = async (id) => {
   return blogPost;
 };
 
+const editBlogPost = async (id, title, content) => {
+  await BlogPost.update({ title, content, updated: new Date() }, { where: { id } });
+  const blogPostEdited = await getBlogPostsId(id);
+  return blogPostEdited;
+};
+
 module.exports = {
   createBlogPost,
   getAllBlogPosts,
   getBlogPostsId,
+  editBlogPost,
 };
