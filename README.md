@@ -1,5 +1,5 @@
 # Blogs API
-Arquitetura e desenvolvimento de  uma API de um CRUD, posts de blog (com o Sequelize). Desenvolvimento de alguns endpoints (seguindo os princípios do REST) que estão conectados ao  banco de dados.
+Arquitetura e desenvolvimento de uma API de blog, utilizando ```Node``` com  ```Sequelize``` e ```Express```. <br>Desenvolvimento de alguns endpoints (seguindo os princípios do REST) e aplicando a arquitetura ```MSC```, que estão conectados ao banco de dados ```MySQL```.
 
 # Habilidades 
 
@@ -10,8 +10,6 @@ Nesse projeto é contruído  um back-end usando `ORM` com o pacote `sequelize` d
 
 
 ## Desenvolvimento
-
-Desenvolvimento de uma aplicação em `Node.js` usando o pacote `sequelize` para fazer um `CRUD` de posts.
 
 Para fazer um post é necessário usuário e login, portanto será trabalhada a **relação entre** `user` e `post`. Também será necessário a utilização de categorias para seus posts, assim trabalhando a relação de `posts` para `categorias` e de `categorias` para `posts`.
  
